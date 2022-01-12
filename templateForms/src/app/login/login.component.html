@@ -1,23 +1,21 @@
 <div class="container-fluid">
   <div class="py-5">
-    <div class="mx-auto">
-      <div class="card col-md-6">
-        <div class="card-header">
+      <div class="card col-md-6 ">
+        <div class="card-header bg-info ">
           <h2>LOGIN PAGE</h2>
         </div>
-
+<div class="card-body">
         <div class="row">
-          <div class="col-md-6">
+          
             <form
               #login="ngForm"
               class="form-container"
               (ngSubmit)="onSubmit(login.value)"
             >
-              <div class="form-group mb-2 col-12">
+              <div class="form-group mb-2">
                 <label for="name">Name</label>
                 <input
-                  type="text" #loginName="ngModel" required minlength="4" maxlength="15" class="form-control" placeholder="enter name" name="userName" ngModel
-                />
+                  type="text" class="form-control" #loginName="ngModel" required minlength="4" maxlength="15"  placeholder="enter name" name="userName" ngModel>
 
                 <div
                   *ngIf="
@@ -37,7 +35,7 @@
                 </div>
               </div>
 
-              <div class="form-group col-12 mb-2">
+              <div class="form-group mb-2">
                 <label for="Password">Password</label>
                 <input
                   type="password" #loginPassword="ngModel" class="form-control" required minlength="6" maxlength="15" placeholder="enter password" name="userpassword" ngModel
@@ -65,10 +63,11 @@
               <div class="form-group col-12 mb-4 col-md-6">
                 <input
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-info"
                   value="login"
                   (click)="dashboard()"
                 />
+                
               </div>
             </form>
           </div>
@@ -76,4 +75,4 @@
       </div>
     </div>
   </div>
-</div>
+  

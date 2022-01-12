@@ -1,1 +1,37 @@
-<p>registration works!</p>
+<div class="container-fluid">
+    <div class="py-5">
+        <div class="card col-md-6 ">
+            <div class="card-header bg-success text-white">
+              <h2>REGISTRATION PAGE</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <form #register="ngForm" class="form-container" >
+                        <div class="form-group mb-2">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" #regName="ngModel" required minlength="4" maxlength="15" name="registerName" ngModel>
+                            <div *ngIf= "regName.errors && (regName.touched || regName.dirty)" class="text-danger">
+                                <small *ngIf ="regName.errors?.['required']">name is required</small>
+                                <small *ngIf="regName.errors?.['minlength']">name should be 4 character long</small>
+                                <small *ngIf="regName.errors?.['maxlength']">15 character is max</small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="name">Email</label>
+                            <input type="text" class="form-control" #regEmail="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  name="registerEmail" ngModel>
+                            <div *ngIf= "regEmail.errors && (regEmail.touched || regEmail.dirty)" class="text-danger">
+                                <small *ngIf ="regEmail.errors?.['required']">Email is required</small>
+                                <small *ngIf="regEmail.errors?.['pattern']">enter valid email</small>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                    
+                </div>
+            </div>
+    </div>
+</div>
