@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#mydialog">Add user</button>
+</nav>
+
+<table class="table ">
+
+    <thead>
+      <tr>
+        <th scope="col">S.no</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">city</th>
+        <th scope="col">company</th>
+
+     </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let userDetail of userDetails; let i=index">
+
+     <th>{{i+1}}</th>
+     <td *ngIf="!userDetail.isEdit">{{userDetail.name}}</td>
+     <td *ngIf="userDetail.isEdit"><input class="form-control" type="text" value="{{userDetail.name}}"/></td>
+
+     <td  *ngIf="!userDetail.isEdit">{{userDetail.email}}</td>
+     <td *ngIf="userDetail.isEdit"><input class="form-control" type="text" value="{{userDetail.email}}"/></td>
+
+     <td  *ngIf="!userDetail.isEdit">{{userDetail.city}}</td>
+     <td *ngIf="userDetail.isEdit"><input class="form-control" type="text" value="{{userDetail.city}}"/></td>
+
+     <td  *ngIf="!userDetail.isEdit">{{userDetail.company}}</td>
+     <td *ngIf="userDetail.isEdit"><input class="form-control" type="text" value="{{userDetail.company}}"/></td>
+
+         <td><input type="button" class="btn btn-primary" *ngIf="!userDetail.isEdit" (click)="doEdit(userDetail)" value="edit"></td>
+
+         <td><input type="button" class="btn btn-primary" *ngIf="userDetail.isEdit" (click)="save(userDetail)" value="save"></td>
+
+         <td><input type="button" class="btn btn-primary" *ngIf="userDetail.isEdit" (click)="cancel(userDetail)" value="cancel"></td>
+    
+    
+
+</tr>
+</tbody>
+</table>
+
+
+
+<div class="modal fade" id="mydialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Add user</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Username</label>
+                    <input type="text" class="form-control" placeholder="enter name">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary " data-bs-dismiss="modal">close</button>
+                <button type="button" class="btn btn-primary">Add</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
