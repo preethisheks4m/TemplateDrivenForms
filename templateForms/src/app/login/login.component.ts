@@ -1,3 +1,4 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,12 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+ userName:any;
+ userPassword:any;
 
 
-  data:any=[
+
+  users:any=[
  {
     "name": "lilly",
-    "password":"apple"
+    "password":"apples"
   },
  {
   "name": "roseMary",
@@ -40,12 +44,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-onSubmit(value:any){
-  console.log(value)
-}
-dashboard(){
+
+dashboard(value:any){
+  console.log(value);
   this.router.navigate(['/dashboard']);
 }
 }
+
+  // for (var user of this.users)
+  // {
+  //   if (console.log(value)==(user.name && user.password)){
+  //     }
+  //     else{
+  //       alert('sorry user not registered');
+  //     }
+  // }
+
+
+
+
+
 
 

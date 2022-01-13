@@ -19,14 +19,20 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="name">Email</label>
-                            <input type="text" class="form-control" #regEmail="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  name="registerEmail" ngModel>
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" #regEmail="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  name="registerEmail" ngModel>
                             <div *ngIf= "regEmail.errors && (regEmail.touched || regEmail.dirty)" class="text-danger">
                                 <small *ngIf ="regEmail.errors?.['required']">Email is required</small>
                                 <small *ngIf="regEmail.errors?.['pattern']">enter valid email</small>
                             </div>
 
                         </div>
+
+                      
+                        <div class="form-group  mb-2">
+                            <input type="button" [disabled]=!register.valid class="btn btn-success" value="Register"  />
+                            
+                          </div>
 
                     </form>
 

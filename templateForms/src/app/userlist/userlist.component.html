@@ -30,6 +30,8 @@
      <td  *ngIf="!userDetail.isEdit">{{userDetail.company}}</td>
      <td *ngIf="userDetail.isEdit"><input class="form-control" type="text" value="{{userDetail.company}}"/></td>
 
+     
+
          <td><input type="button" class="btn btn-primary" *ngIf="!userDetail.isEdit" (click)="doEdit(userDetail)" value="edit"></td>
 
          <td><input type="button" class="btn btn-primary" *ngIf="userDetail.isEdit" (click)="save(userDetail)" value="save"></td>
@@ -44,22 +46,59 @@
 
 
 
+
 <div class="modal fade" id="mydialog" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLongTitle">Add user</h3>
+                <h3 class="modal-title" id="exampleModalLongTitle">Add User</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Username</label>
-                    <input type="text" class="form-control" placeholder="enter name">
-                </div>
+                <form #list="ngForm" class="form-container" >
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Username</label>
+                        <input name="addName" [(ngModel)]=this.addUser.name type="text" class="form-control" placeholder="enter name" required minlength="4" maxlength="15" #listName="ngModel">
+                        <div *ngIf="listName.errors && (listName.touched || listName.dirty)" class="text-danger">
+                            <small *ngIf="listName.errors?.['required']">*required</small>
+                            <small *ngIf="listName.errors?.['minlength']">name should be 4 characters long</small>
+                            <small *ngIf="listName.errors?.['maxlength']">name should be within 15 characters long</small>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input name="addEmail" [(ngModel)]=this.addUser.email type="text" class="form-control" placeholder="enter email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #listEmail="ngModel" >
+                        <div *ngIf="listEmail.errors && (listEmail.touched || listEmail.dirty)" class="text-danger">
+                            <small *ngIf="listEmail.errors?.['required']">*required</small>
+                            <small *ngIf="listEmail.errors?.['pattern']">enter valid email</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input name="addCity" [(ngModel)]=this.addUser.city type="text" class="form-control" placeholder="enter city" required #listCity="ngModel">
+                        <div *ngIf="listCity.errors && (listCity.touched || listCity.dirty)" class="text-danger">
+                            <small *ngIf="listCity.errors?.['required']">*required</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="company" class="form-label">Company</label>
+                        <input name="addCompany"  [(ngModel)]=this.addUser.company  type="text" class="form-control" placeholder="enter company" required #listCompany="ngModel">
+                        <div *ngIf="listCompany.errors && (listCompany.touched || listCompany.dirty)" class="text-danger">
+                            <small *ngIf="listCompany.errors?.['required']">*required</small>
+                        </div>
+                    </div>
+
+                    
+
+               
+                </form>
             </div>
+                
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary " data-bs-dismiss="modal">close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                <button (click)="updateRow()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
 
             </div>
 

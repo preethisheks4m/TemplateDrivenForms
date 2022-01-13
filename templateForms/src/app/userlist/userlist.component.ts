@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserlistComponent implements OnInit {
 
+  
+
+  addUser:any={};
+
   userDetails = [
     {
       "name": "Abinav",
@@ -52,7 +56,18 @@ export class UserlistComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.addUser={
+      name:'',
+  email:'',
+  city:'',
+  company:''
+
+    }
   }
+
+updateRow(){
+ this.userDetails.push(this.addUser);
+}
 
 doEdit(userDetail:any){
   userDetail.isEdit=true;
